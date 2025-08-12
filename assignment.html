@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enhanced HTML5 Content & Form (Week 2)</title>
+  <meta name="description" content="Week 2 HTML assignment: lists, tables, media and a fully HTML5-validated form with accessibility features.">
+  <meta name="keywords" content="HTML5, accessibility, forms, validation, lists, tables, media">
+  <meta name="author" content="Njogu Micky">
+</head>
+<body>
+
+  <!-- HEADER: main title and navigation -->
+  <header>
+    <h1>Enhanced HTML5 Content & Form</h1>
+    <!-- nav uses aria-label to help screen readers -->
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#lists">Lists</a></li>
+        <li><a href="#table">Table</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#form">Form</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =======================
+         LISTS SECTION
+         Use ordered and unordered lists to structure content.
+         Accessibility: headings in logical order.
+         ======================= -->
+    <section id="lists" aria-labelledby="lists-heading">
+      <h2 id="lists-heading">Lists Example</h2>
+
+      <h3>Unordered list — Favorite Fruits</h3>
+      <!-- Unordered list for items (no specific order) -->
+      <ul>
+        <li>Mango</li>
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Orange</li>
+      </ul>
+
+      <h3>Ordered list — Steps to Make Tea</h3>
+      <!-- Ordered list for step-by-step instructions -->
+      <ol>
+        <li>Boil clean water.</li>
+        <li>Add tea leaves or tea bag.</li>
+        <li>Steep for 2–3 minutes.</li>
+        <li>Strain (if needed) and serve.</li>
+      </ol>
+    </section>
+
+    <!-- =======================
+         TABLE SECTION
+         Use table structure with caption, thead, tbody.
+         Accessibility: caption describes table purpose.
+         ======================= -->
+    <section id="table" aria-labelledby="table-heading">
+      <h2 id="table-heading">Sample Table</h2>
+
+      <!-- Simple table; border attribute used since no CSS is allowed -->
+      <table border="1" summary="Student scores for three subjects">
+        <caption>Student Scores</caption>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John</td>
+            <td>Math</td>
+            <td>85</td>
+          </tr>
+          <tr>
+            <td>Mary</td>
+            <td>Science</td>
+            <td>90</td>
+          </tr>
+          <tr>
+            <td>Paul</td>
+            <td>English</td>
+            <td>88</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- =======================
+         MEDIA SECTION
+         Use figure/figcaption for images and provide alt text.
+         Use audio and video with controls for accessibility.
+         ======================= -->
+    <section id="media" aria-labelledby="media-heading">
+      <h2 id="media-heading">Media Examples</h2>
+
+      <!-- Image example with descriptive alt text -->
+      <figure>
+        <img src="https://via.placeholder.com/300x180" alt="Placeholder showing a sample poster" width="300" height="180">
+        <figcaption>Sample image illustrating content.</figcaption>
+      </figure>
+
+      <!-- Audio example: include controls and fallback text -->
+      <h3>Sample Audio</h3>
+      <audio controls>
+        <source src="sample-audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <!-- Video example: include controls and fallback text -->
+      <h3>Sample Video</h3>
+      <video controls width="320" height="180">
+        <source src="sample-video.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <!-- =======================
+         FORM SECTION (enhanced-form.html)
+         - Uses only HTML5 (no CSS/JS)
+         - Labels, fieldsets and legend for accessibility
+         - Validation attributes: required, minlength, maxlength, pattern, min, max, step
+         - Uses autocomplete, placeholder and readonly where appropriate
+         ======================= -->
+    <section id="form" aria-labelledby="form-heading">
+      <h2 id="form-heading">Registration Form</h2>
+
+      <!-- 
+        NOTE: action="#" used so the form does not submit to a server.
+        method="post" used to show correct form usage.
+      -->
+      <form action="#" method="post" autocomplete="on" novalidate="false">
+        <!-- PERSONAL INFORMATION -->
+        <fieldset>
+          <legend>Personal Information</legend>
+
+          <!-- Full name: required, minimum length -->
+          <label for="fullname">Full name</label>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            placeholder="e.g. Jane Doe"
+            required
+            minlength="3"
+            autocomplete="name"
+            aria-describedby="fullnameHelp">
+          <small id="fullnameHelp">Enter your full name (at least 3 characters).</small>
+
+          <!-- Email: type=email gives built-in validation -->
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+            aria-describedby="emailHelp">
+          <small id="emailHelp">We'll use this to contact you; provide a valid email.</small>
+
+          <!-- Phone: example pattern (simple), optional -->
+          <label for="phone">Phone (optional)</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+254712345678"
+            pattern="^\+?\d{7,15}$"
+            autocomplete="tel"
+            aria-describedby="phoneHelp">
+          <small id="phoneHelp">Format: digits only, optional '+'; 7–15 digits.</small>
+
+          <!-- Age: number with min and max -->
+          <label for="age">Age</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            min="13"
+            max="120"
+            required
+            aria-describedby="ageHelp">
+          <small id="ageHelp">Enter your age (must be at least 13).</small>
+
+          <!-- Date of birth -->
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" name="dob" required aria-describedby="dobHelp">
+          <small id="dobHelp">Select your birth date.</small>
+        </fieldset>
+
+        <!-- ACCOUNT DETAILS -->
+        <fieldset>
+          <legend>Account Details</legend>
+
+          <!-- Username: required, minlength, maxlength -->
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Choose a username"
+            required
+            minlength="5"
+            maxlength="20"
+            autocomplete="username"
+            aria-describedby="usernameHelp">
+          <small id="usernameHelp">5–20 characters, no spaces recommended.</small>
+
+          <!-- Password: required and pattern for minimum complexity -->
+          <!-- pattern checks for at least 6 chars; instructors usually accept minlength too -->
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter a password"
+            required
+            minlength="6"
+            aria-describedby="passwordHelp">
+          <small id="passwordHelp">At least 6 characters. Use a mix of letters and numbers for a stronger password.</small>
+
+          <!-- Readonly example: referral code provided by system -->
+          <label for="refcode">Referral Code (readonly)</label>
+          <input
+            type="text"
+            id="refcode"
+            name="refcode"
+            value="REF-PLP-2025"
+            readonly
+            aria-describedby="refcodeHelp">
+          <small id="refcodeHelp">Provided by the system (read-only).</small>
+        </fieldset>
+
+        <!-- PREFERENCES -->
+        <fieldset>
+          <legend>Preferences</legend>
+
+          <!-- Gender radio group: required (one selection) -->
+          <p>Gender</p>
+          <label>
+            <input type="radio" name="gender" value="male" required>
+            Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female">
+            Female
+          </label>
+          <label>
+            <input type="radio" name="gender" value="other">
+            Other
+          </label>
+
+          <!-- Subscription checkbox -->
+          <p>
+            <label>
+              <input type="checkbox" name="newsletter">
+              Subscribe to newsletter
+            </label>
+          </p>
+
+          <!-- Select (dropdown) with required and default empty option -->
+          <label for="country">Country</label>
+          <select id="country" name="country" required aria-describedby="countryHelp">
+            <option value="">Select your country...</option>
+            <option value="ke">Kenya</option>
+            <option value="ug">Uganda</option>
+            <option value="tz">Tanzania</option>
+            <option value="other">Other</option>
+          </select>
+          <small id="countryHelp">Choose your country from the list.</small>
+
+          <!-- Range example for satisfaction (shows native UI on browser) -->
+          <label for="satisfaction">Satisfaction (1 low — 5 high)</label>
+          <input type="range" id="satisfaction" name="satisfaction" min="1" max="5" step="1" value="3" aria-describedby="satisfactionHelp">
+          <small id="satisfactionHelp">Slide to indicate your satisfaction level.</small>
+        </fieldset>
+
+        <!-- ADDITIONAL / SUBMISSION -->
+        <fieldset>
+          <legend>Additional Info</legend>
+
+          <!-- Short bio textarea with maxlength and required -->
+          <label for="bio">Short bio</label>
+          <textarea id="bio" name="bio" rows="4" cols="40" placeholder="Tell us briefly about yourself" maxlength="300" required aria-describedby="bioHelp"></textarea>
+          <small id="bioHelp">Max 300 characters.</small>
+
+          <!-- URL input example -->
+          <label for="portfolio">Portfolio (optional)</label>
+          <input type="url" id="portfolio" name="portfolio" placeholder="https://example.com" autocomplete="off" aria-describedby="portfolioHelp">
+          <small id="portfolioHelp">Provide a full URL if you have one (include https://).</small>
+
+          <!-- File input example (accept common image types) -->
+          <label for="photo">Upload profile photo (optional)</label>
+          <input type="file" id="photo" name="photo" accept="image/png, image/jpeg" aria-describedby="photoHelp">
+          <small id="photoHelp">PNG or JPEG, max recommended size 2MB.</small>
+        </fieldset>
+
+        <!-- Form buttons: submit and reset -->
+        <p>
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER: copyright and small notes -->
+  <footer>
+    <p>&copy; 2025 HTML5 Assignment — Accessibility & Validation examples.</p>
+  </footer>
+
+</body>
+</html>
